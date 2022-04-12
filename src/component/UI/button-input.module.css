@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    gap: 9px;
+}
+
+input {
+    height: 24px;
+    width: calc(100% - 60px);
+    border-radius: 8px;
+    text-align: center;
+    border: none;
+    box-shadow: rgb(60 64 67 / 30%) 0 1px 3px 0,
+        rgb(60 64 67 / 15%) 0 4px 8px 3px;
+    outline: none;
+}
+
+.btn {
+    padding: 0px 12px;
+    height: 30px;
+    width: 30px;
+}

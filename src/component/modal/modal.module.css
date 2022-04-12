@@ -1,0 +1,52 @@
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #0b0b0cb8, #fafcff);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+}
+
+.wrapper {
+    width: 65%;
+    height: 50%;
+    box-shadow: 0 8px 8px #0a10143d, 0 0 8px #0a10141f;
+    border-radius: 10px;
+    transition: box-shadow 0.5s;
+    margin-bottom: 10px;
+    position: relative;
+    left: 50%;
+    background-color: #ffffff;
+    /* box-sizing: border-box; */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    flex-direction: column;
+    overflow: auto;
+    padding: 10px;
+}
+
+.cart-product-card {
+    width: 80% !important;
+    height: 110px !important;
+}
+
+.header {
+    width: 100%;
+    height: 15%;
+}
+
+.body {
+    width: 100%;
+    height: 70%;
+}
+
+.footer {
+    width: 100%;
+    height: 15%;
+}

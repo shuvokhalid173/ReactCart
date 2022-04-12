@@ -1,0 +1,5 @@
+.wrapper {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+    padding: 10px;
+}
