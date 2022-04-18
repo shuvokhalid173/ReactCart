@@ -9,9 +9,7 @@ const ProductCard = (props) => {
     const { initialCartValue, showDescription, cartStyleClass } = props;
 
     const [cartValue, setCartValue] = useState(initialCartValue);
-    // const [backgroundColor, setBackgroundColor] = useState(initialCartColor);
 
-    console.log("product rendering ...", initialCartValue);
     useEffect(() => {
         setCartValue(initialCartValue);
     }, [initialCartValue]);
