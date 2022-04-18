@@ -11,6 +11,11 @@ const ProductCard = (props) => {
     const [cartValue, setCartValue] = useState(initialCartValue);
     // const [backgroundColor, setBackgroundColor] = useState(initialCartColor);
 
+    console.log("product rendering ...", initialCartValue);
+    useEffect(() => {
+        setCartValue(initialCartValue);
+    }, [initialCartValue]);
+
     const productContext = useContext(ProductContext);
 
     const handleAddToCart = (product) => {

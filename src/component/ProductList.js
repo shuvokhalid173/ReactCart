@@ -15,7 +15,7 @@ const ProductList = (props) => {
 
                 return (
                     <ProductCard
-                        initialCartValue={0}
+                        initialCartValue={goo(product)}
                         key={product.id}
                         product={product}
                         showDescription={true}
