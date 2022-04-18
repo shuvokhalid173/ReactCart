@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import cardClasses from "../css/product-card.module.css";
 import Button from "./UI/Button";
 import ButtonInput from "./UI/ButtonInput";
@@ -6,21 +6,15 @@ import ProductContext from "../store/context-api";
 
 const ProductCard = (props) => {
     const { id, title, category, description, price } = props.product;
-    const {
-        initialCartValue,
-        showDescription,
-        initialCartColor,
-        cartStyleClass,
-    } = props;
+    const { initialCartValue, showDescription, cartStyleClass } = props;
 
     const [cartValue, setCartValue] = useState(initialCartValue);
-    const [backgroundColor, setBackgroundColor] = useState(initialCartColor);
+    // const [backgroundColor, setBackgroundColor] = useState(initialCartColor);
 
     const productContext = useContext(ProductContext);
 
     const handleAddToCart = (product) => {
         changeCartValue("inc");
-        setBackgroundColor("#ff000012");
         productContext.onAddToCartButtonClick({
             ...product,
             amount: 1,
@@ -38,11 +32,11 @@ const ProductCard = (props) => {
             setCartValue(cartValue - 1);
         }
     };
-    console.log(cartValue);
+    // console.log(cartValue);
 
     return (
         <div
-            style={{ backgroundColor: cartValue ? backgroundColor : "#ffffff" }}
+            style={{ backgroundColor: cartValue ? "#ff000012" : "#ffffff" }}
             className={`${cardClasses.wrapper} ${cartStyleClass}`}
         >
             <div

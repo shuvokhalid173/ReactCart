@@ -10,6 +10,7 @@ import ProductList from "./component/ProductList";
 import products from "./fake-data/fakeProduct";
 import ProductContext from "./store/context-api";
 import Modal from "./component/modal/overlay-modal";
+import Main from "./component/lesson/Main";
 
 import ReactDOM from "react-dom";
 
@@ -56,7 +57,7 @@ const App = () => {
                     cartItems={cartItems}
                 ></Header>
                 <Content>
-                    <ProductList products={products} />
+                    <ProductList modalData={modalData} products={products} />
                 </Content>
             </Wrapper>
 
@@ -67,6 +68,7 @@ const App = () => {
                 ></Modal>
             )}
         </ProductContext.Provider>
+        // <Main title={"dd"} dataList={[9, 8, 7, 6, 5, 4, 3, 2, 1]} />
     );
 };
 
