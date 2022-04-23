@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ProductCard from "../ProductCard";
 import Button from "../UI/Button";
@@ -23,6 +23,7 @@ export function PopupHeader(props) {
     return (
         <div className={modalClasses.header}>
             <h3>Your Cart</h3>
+            <h3>Total Items: {props.totalItems}</h3>
         </div>
     );
 }
@@ -33,7 +34,7 @@ export function PopupFooter(props) {
     return (
         <div className={modalClasses.footer}>
             <Button onClick={props.hideModal}>Cancel</Button>
-            <span>Total cost: 100k</span>
+            <span>Total cost: {props.totalCost}</span>
             <Button>Place order</Button>
         </div>
     );
@@ -41,27 +42,49 @@ export function PopupFooter(props) {
 
 const Modal = (props) => {
     const { data } = props;
+    const [totalCost, setTotalCost] = useState(0);
+
+    useEffect(() => {
+        let t_cost = 0;
+        data.map((item) => (t_cost += item.amount * item.price));
+        setTotalCost(t_cost);
+    }, []);
+
+    const changeTotalCost = (value, type) =>
+        setTotalCost((prevState) =>
+            type == "inc" ? prevState + value : prevState - value
+        );
+
     return ReactDOM.createPortal(
         <Overlay handleClickOnOverlay={props.hideModal}>
             <Popup className={modalClasses.wrapper}>
-                <PopupHeader />
+                <PopupHeader totalItems={data.length} />
                 <PopupBody>
-                    {data.map((item) => {
-                        return (
-                            <ProductCard
-                                initialCartValue={item.amount}
-                                product={item}
-                                key={item.id}
-                                showDescription={false}
-                                initialCartColor={"#ff000012"}
-                                cartStyleClass={
-                                    modalClasses["cart-product-card"]
-                                }
-                            />
-                        );
-                    })}
+                    {data.length > 0 ? (
+                        data.map((item) => {
+                            return (
+                                <ProductCard
+                                    initialCartValue={item.amount}
+                                    product={item}
+                                    key={item.id}
+                                    showDescription={false}
+                                    initialCartColor={"#ff000012"}
+                                    cartStyleClass={
+                                        modalClasses["cart-product-card"]
+                                    }
+                                    changeTotalCost={changeTotalCost}
+                                    minValue={1}
+                                />
+                            );
+                        })
+                    ) : (
+                        <h4>No data in Your Cart!</h4>
+                    )}
                 </PopupBody>
-                <PopupFooter hideModal={props.hideModal} />
+                <PopupFooter
+                    totalCost={totalCost}
+                    hideModal={props.hideModal}
+                />
             </Popup>
         </Overlay>,
         document.getElementById("modal-container")

@@ -6,7 +6,8 @@ import ProductContext from "../store/context-api";
 
 const ProductCard = (props) => {
     const { id, title, category, description, price } = props.product;
-    const { initialCartValue, showDescription, cartStyleClass } = props;
+    const { initialCartValue, showDescription, cartStyleClass, minValue } =
+        props;
 
     const [cartValue, setCartValue] = useState(initialCartValue);
 
@@ -25,6 +26,7 @@ const ProductCard = (props) => {
     };
 
     const changeCartValue = (option) => {
+        props.changeTotalCost && props.changeTotalCost(price, option);
         if (option == "inc") {
             productContext.onUpdateItemOfCart(id, cartValue + 1);
             setCartValue(cartValue + 1);
@@ -61,6 +63,7 @@ const ProductCard = (props) => {
                     <ButtonInput
                         changeCartValue={changeCartValue}
                         value={cartValue}
+                        minValue={minValue}
                     />
                 ) : (
                     <Button

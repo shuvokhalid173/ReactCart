@@ -22,3 +22,12 @@ input {
     height: 30px;
     width: 30px;
 }
+
+.disabled-btn {
+    background-color: #a8aeac;
+}
+
+.disabled-btn:hover {
+    background-color: #cfd5d3;
+    cursor: unset;
+}

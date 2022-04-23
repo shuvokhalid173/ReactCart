@@ -21,6 +21,7 @@ const ProductList = (props) => {
                         showDescription={true}
                         // initialCartColor={"#ffffff"}
                         cartStyleClass={""}
+                        minValue={0}
                     />
                 );
             })}
