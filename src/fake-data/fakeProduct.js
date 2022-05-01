@@ -1,4 +1,4 @@
-export default [
+const products = [
     {
         id: 1,
         title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -260,3 +260,13 @@ export default [
         },
     },
 ];
+
+export async function readData(setIsLoading, setProducts) {
+    try {
+        const res = await fetch("https://fakestoreapi.com/products/");
+        const data = await res.json();
+        console.log(data);
+        setIsLoading(false);
+        setProducts(data);
+    } catch (e) {}
+}

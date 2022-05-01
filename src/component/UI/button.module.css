@@ -79,3 +79,7 @@
 .button-17 img {
     width: 20px;
 }
+
+.button-17:disabled {
+    background-color: #c4c7ca;
+}

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ProductCard from "../ProductCard";
 import Button from "../UI/Button";
 import modalClasses from "./modal.module.css";
+import ProductContext from "../../store/context-api";
 
 export function Overlay(props) {
     return (
@@ -31,11 +32,17 @@ export function PopupBody(props) {
     return <div className={modalClasses.body}>{props.children}</div>;
 }
 export function PopupFooter(props) {
+    const context = useContext(ProductContext);
     return (
         <div className={modalClasses.footer}>
             <Button onClick={props.hideModal}>Cancel</Button>
             <span>Total cost: {props.totalCost}</span>
-            <Button>Place order</Button>
+            <Button
+                onClick={() => context.onPlaceOrder()}
+                style={{ background: "dodgerblue", color: "#ffffff" }}
+            >
+                Place order
+            </Button>
         </div>
     );
 }
